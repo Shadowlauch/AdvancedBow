@@ -21,7 +21,11 @@ public class BowListener extends PlayerListener{
     }
 
     public void onPlayerInteract(PlayerInteractEvent e) {
-    	int type=e.getItem().getTypeId();
+    	int type;
+    	if(e.getItem()!=null){
+    		type=e.getItem().getTypeId();
+    	}
+    	else return;
     	String act=e.getAction().toString();
     	Boolean arrows=e.getPlayer().getInventory().contains(262);
     	if(type==261 && arrows && (act=="RIGHT_CLICK_BLOCK" || act=="RIGHT_CLICK_AIR")){

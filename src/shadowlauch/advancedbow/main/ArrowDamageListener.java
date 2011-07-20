@@ -27,8 +27,9 @@ public class ArrowDamageListener extends EntityListener {
 	    			Player p=(Player) f.getProjectile().getShooter();
 	    			e.setDamage((int) (e.getDamage()*plugin.config.ad));
 	    			if(p.getInventory().contains(327) && plugin.hasPerm(p, "advancedbow.fire") && enabledfire.contains(p) && plugin.config.fae){
-	    				e.getEntity().setFireTicks(plugin.config.ft);
-	    			}
+	    				if(!(e.getEntity() instanceof Player) || (p.getWorld().getPVP()))
+	    					e.getEntity().setFireTicks(plugin.config.ft);
+	    				}
 	    		}
 	    	}
     	}
