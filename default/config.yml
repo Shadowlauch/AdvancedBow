@@ -1,0 +1,21 @@
+#AdvancedBow by Shadowlauch
+##
+##
+
+
+arrow-damage: 1.0                                               #1=100%; 0.8=80%; 0=0%; ...
+arrow-cooldown: 1000                                            #Cooldown in Milliseconds -> Second=1000 millisecons. E.G. 2 Seconds=2000 Milliseconds
+arrow-fire-enabled: true                                        #Fire-Arrow-Abillity enabled
+fire-ticks: 100                                                  #Leave as default (or try)
+
+#You can edit templates freely.
+#But you have to include the variable (if extisting).
+templates:
+  cooldown: +sec seconds cooldown.                              #&sec will be replaced by the "cooldown-seconds"
+  fire:
+    enabled: You have enabled fire-arrows.
+    disabled: You have disabled fire-arrows.
+  errors:
+    nolavabucket: You do not have a lava-bucket in your inventory.
+    nopermissions: You do not have the permission to do that.
+    firearrownotenabled: Fire-Arrows are disabled.
