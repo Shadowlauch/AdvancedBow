@@ -1,5 +1,10 @@
 package shadowlauch.advancedbow.main;
 
+import java.util.List;
+import java.util.ListIterator;
+
+import net.minecraft.server.ItemStack;
+
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -49,11 +54,14 @@ public class Commands implements CommandExecutor {
               }
               if(arg1.equals("fire")){
             	  if(plugin.config.fae){
-	            	  if(plugin.hasPerm(p,"advancedbow.fire")){
-	            		  if(p.getInventory().contains(327)){
+	            	  if(plugin.hasPerm(p,"advancedbow.arrows.fire")){
+	            		  if(hasItems(p,0)){
 	            			  if(!ArrowDamageListener.enabledfire.contains(p)){
 	            				  ArrowDamageListener.enabledfire.add(p);
 	            				  sender.sendMessage(ChatColor.RED + plugin.config.temp_fe);
+	            				  if(ArrowDamageListener.enabledexplosive.contains(p)){
+	            					  ArrowDamageListener.enabledexplosive.remove(p);
+	            				  }
 	            			  }
 	            			  else{
 	            				  ArrowDamageListener.enabledfire.remove(p);
@@ -67,7 +75,42 @@ public class Commands implements CommandExecutor {
             	  else sender.sendMessage(ChatColor.RED + plugin.config.temp_fane);
             	  return true;
               }
+              if(arg1.equals("explosive")){
+            	  if(plugin.config.eae){
+	            	  if(plugin.hasPerm(p,"advancedbow.arrows.explosive")){
+	            		  if(hasItems(p,1)){
+	            			  if(!ArrowDamageListener.enabledexplosive.contains(p)){
+	            				  ArrowDamageListener.enabledexplosive.add(p);
+	            				  sender.sendMessage(ChatColor.RED + plugin.config.temp_ee);
+	            				  if(ArrowDamageListener.enabledfire.contains(p)){
+	            					  ArrowDamageListener.enabledfire.remove(p);
+	            				  }
+	            			  }
+	            			  else{
+	            				  ArrowDamageListener.enabledexplosive.remove(p);
+	            				  sender.sendMessage(ChatColor.RED + plugin.config.temp_ed);
+	            			  }
+	            		  }
+	            		  else sender.sendMessage(ChatColor.RED + plugin.config.temp_neri);
+	            	  }
+	            	  else sender.sendMessage(ChatColor.RED + plugin.config.temp_nep);
+            	  }
+            	  else sender.sendMessage(ChatColor.RED + plugin.config.temp_fane);
+            	  return true;
+              }
           }
           return false;
        }
+      private boolean hasItems(Player p, int i){
+    	List<Integer> items;
+    	if(i==0){items=plugin.config.fari;}
+    	else{items=plugin.config.eari;}
+      	ListIterator<Integer> it = items.listIterator();
+      	while(it.hasNext()){
+      		if(!p.getInventory().contains(Integer.valueOf(it.next()).intValue())){
+      			return false;
+      		}
+      	}
+      	return true;
+      }
 }

@@ -4,6 +4,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.List;
 //import java.util.List;
 
 import org.bukkit.util.config.Configuration;
@@ -35,11 +36,11 @@ public class ConfigLoader{
 	    private Boolean readBoolean(String root){
 	        Configuration config = load();
 	        return config.getBoolean(root, true);
-	    }
-	    private List<String> readStringList(String root){
-	        Configuration config = load();
-	        return config.getKeys(root);
 	    }*/
+	    private List<Integer> readIntList(String root){
+	        Configuration config = load();
+	        return config.getIntList(root, fari);
+	    }
 	    private int readInt(String root){
 	        Configuration config = load();
 	        return config.getInt(root, 0);
@@ -75,15 +76,34 @@ public class ConfigLoader{
 	    }
 	    private void loadkeys(){
 	    	ad=readDouble("arrow-damage");
-	    	fae=readBoolean("arrow-fire-enabled");
 	    	cdm=readInt("arrow-cooldown");
-	    	temp_fe=readString("templates.fire.enabled");
-	    	temp_fane=readString("templates.errors.firearrownotenabled");
-	    	temp_fd=readString("templates.fire.disabled");
 	    	temp_cd=readString("templates.cooldown");
-	    	temp_nlb=readString("templates.errors.nolavabucket");
 	    	temp_nep=readString("templates.errors.nopermissions");
 	    	ft=readInt("fire-ticks");
+	    	
+	    	fae=readBoolean("firearrows.enabled");
+	    	facdm=readInt("firearrows.cooldown");
+	    	fari=readIntList("firearrows.required-items");
+	    	fadiwd=readBoolean("firearrows.damage-items-with-durability");
+	    	fasiwd=readBoolean("firearrows.subtract-items-without-durability");
+	    	temp_nlb=readString("templates.errors.notrequiredfirearrowitems");
+	    	temp_fane=readString("templates.errors.firearrownotenabled");
+	    	temp_fe=readString("templates.fire.enabled");
+	    	temp_fd=readString("templates.fire.disabled");
+	    	temp_fgd=readString("templates.fire.got-disabled");
+	    	
+	    	
+	    	eae=readBoolean("explosivearrows.enabled");
+	    	eacdm=readInt("explosivearrows.cooldown");
+	    	eari=readIntList("explosivearrows.required-items");
+	    	eaer=readInt("explosivearrows.explosion-radius");
+	    	eadiwd=readBoolean("explosivearrows.damage-items-with-durability");
+	    	easiwd=readBoolean("explosivearrows.subtract-items-without-durability");
+	    	temp_neri=readString("templates.errors.notrequiredexplosivearrowitems");
+	    	temp_eane=readString("templates.errors.explosivearrownotenabled");
+	    	temp_ed=readString("templates.explosive.disabled");
+	    	temp_ee=readString("templates.explosive.enabled");
+	    	temp_egd=readString("templates.explosive.got-disabled");
 	    }
 	    void copy( InputStream in, OutputStream out ) throws IOException
 	    {
@@ -116,15 +136,37 @@ public class ConfigLoader{
 	      }
 	    }
 
-		protected String temp_fe;
-		protected String temp_fd;
+
 		protected String temp_cd;
-		protected String temp_nlb;
 		protected String temp_nep;
-		protected String temp_fane;
-		protected boolean fae;
 		protected int cdm;
 		protected double ad;
 		protected int ft;
+		
+		protected boolean fae;
+		protected int facdm;
+		protected boolean fadiwd;
+		protected boolean fasiwd;
+		protected String temp_fe;
+		protected String temp_fgd;
+		protected String temp_fd;
+		protected String temp_nlb;
+		protected List<Integer> fari;
+		protected String temp_fane;
+	
+		protected boolean eae;
+		protected int eacdm;
+		protected int eaer;
+		protected boolean eadiwd;
+		protected boolean easiwd;
+		protected String temp_ee;
+		protected String temp_egd;
+		protected String temp_ed;
+		protected String temp_neri;
+		protected List<Integer> eari;
+		protected String temp_eane;
+		
+		
+		
 		
 }

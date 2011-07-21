@@ -14,6 +14,7 @@ public class ArrowDamageListener extends EntityListener {
 	
     public static AdvancedBow plugin;
     public static List<Player> enabledfire=new ArrayList<Player>();
+    public static List<Player> enabledexplosive=new ArrayList<Player>();
 
     public ArrowDamageListener(AdvancedBow instance) {
         plugin = instance;
@@ -26,10 +27,18 @@ public class ArrowDamageListener extends EntityListener {
 	    		if(f.getProjectile().getShooter() instanceof Player){
 	    			Player p=(Player) f.getProjectile().getShooter();
 	    			e.setDamage((int) (e.getDamage()*plugin.config.ad));
-	    			if(p.getInventory().contains(327) && plugin.hasPerm(p, "advancedbow.fire") && enabledfire.contains(p) && plugin.config.fae){
-	    				if(!(e.getEntity() instanceof Player) || (p.getWorld().getPVP()))
-	    					e.getEntity().setFireTicks(plugin.config.ft);
+	    			if(plugin.hasPerm(p, "advancedbow.arrows.fire") && (enabledfire.contains(p) || BowListener.lastfirearrow.contains(p)) && plugin.config.fae){
+	    				if(BowListener.lastfirearrow.contains(p))BowListener.lastfirearrow.remove(p);
+	    				if(!(e.getEntity() instanceof Player) || (p.getWorld().getPVP())){
+		    				e.getEntity().setFireTicks(plugin.config.ft);
 	    				}
+	    			}
+	    			else if(plugin.hasPerm(p, "advancedbow.arrows.explosive") &&  (enabledexplosive.contains(p) || BowListener.lastexplosivearrow.contains(p)) && plugin.config.eae){
+	    				if(BowListener.lastexplosivearrow.contains(p))BowListener.lastexplosivearrow.remove(p);
+	    				if(!(e.getEntity() instanceof Player) || (p.getWorld().getPVP())){
+		    				e.getEntity().getWorld().createExplosion(e.getEntity().getLocation(), plugin.config.eaer);
+	    				}
+	    			}
 	    		}
 	    	}
     	}
@@ -40,10 +49,17 @@ public class ArrowDamageListener extends EntityListener {
     		Arrow a=(Arrow) e.getEntity();
 	    	if(a.getShooter() instanceof Player){
 	    		Player p=(Player)a.getShooter();
-	    		if(p.getInventory().contains(327) && plugin.hasPerm(p, "advancedbow.fire") && enabledfire.contains(p) && plugin.config.fae){
-	    			a.setFireTicks(100);
+	    		if(BowListener.lastfirearrow.contains(p))BowListener.lastfirearrow.remove(p);
+	    		if(plugin.hasPerm(p, "advancedbow.arrows.fire") &&  (enabledfire.contains(p) || BowListener.lastfirearrow.contains(p))  && plugin.config.fae){
+	    			a.setFireTicks(plugin.config.ft);
+	    		}
+	    		else if(plugin.hasPerm(p, "advancedbow.arrows.explosive") && (enabledexplosive.contains(p) || BowListener.lastexplosivearrow.contains(p)) && plugin.config.eae){
+	    			if(BowListener.lastexplosivearrow.contains(p))BowListener.lastexplosivearrow.remove(p);
+	    			e.getEntity().getWorld().createExplosion(e.getEntity().getLocation(), plugin.config.eaer);
 	    		}
 	    	}
     	}
     }
+
+  	
 }

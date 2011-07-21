@@ -4,18 +4,40 @@
 
 
 arrow-damage: 1.0                                               #1=100%; 0.8=80%; 0=0%; ...
-arrow-cooldown: 1000                                            #Cooldown in Milliseconds -> Second=1000 millisecons. E.G. 2 Seconds=2000 Milliseconds
-arrow-fire-enabled: true                                        #Fire-Arrow-Abillity enabled
-fire-ticks: 100                                                  #Leave as default (or try)
+arrow-cooldown: 1000                                            #Cooldown after normal shot in Milliseconds -> Second=1000 millisecons. E.G. 2 Seconds=2000 Milliseconds
+fire-ticks: 100                                                 #Leave as default (or try)
+
+firearrows:
+  enabled: true                                                 #Fire-Arrow-Abillity enabled
+  cooldown: 3000                                                #Cooldown after "fire-arrow-shot"
+  required-items: [35,263,259]                                  #The required items to shoot an fire-arrow
+  damage-items-with-durability: true                            #If true and you shoot a fire-arrow the plugin will for example damage your Flint and Steel
+  subtract-items-without-durability: true                       #If true and you shoot a fire-arrow the plugin will subtract 1 item. For example: Before:64 coal; After:63 coal
+    
+explosivearrows:
+  enabled: true                                                 #Explosive-Arrow-Abillity enabled
+  cooldown: 10000                                               #Cooldown after "explosive-arrow-shot"
+  required-items: [287,263,46]                                  #The required items to shoot an explosive-arrow
+  damage-items-with-durability: true                            #If true and you shoot an explosive-arrow the plugin will for example damage your Flint and Steel
+  subtract-items-without-durability: true                       #If true and you shoot a explosive-arrow the plugin will subtract 1 item. For example: Before:64 coal; After:63 coal
+  explosion-radius: 10                                          #Sets the radius of the explosion.
 
 #You can edit templates freely.
 #But you have to include the variable (if extisting).
 templates:
   cooldown: +sec seconds cooldown.                              #&sec will be replaced by the "cooldown-seconds"
   fire:
-    enabled: You have enabled fire-arrows.
-    disabled: You have disabled fire-arrows.
+    enabled: You have enabled fire-arrows.                      #Player enables fire-arrows
+    disabled: You have disabled fire-arrows.                    #Player enables fire-arrows
+    got-disabled: Fire-arrows has been disabled.                #System disabled fire-arrows
+  explosive:
+    enabled: You have enabled explosive-arrows.                 #Player enables explosive-arrows
+    disabled: You have disabled explosive-arrows.               #Player enables explosive-arrows
+    got-disabled: Fire-arrows has been disabled.                #System disabled explosive-arrows
   errors:
-    nolavabucket: You do not have a lava-bucket in your inventory.
+    notrequiredfirearrowitems: You do not have Wool/Flint and Steel/Coal in your inventory.                #!!!!!!CHANGE THAT IF YOU CHANGE THE REQUIRED ITEMS
+    notrequiredexplosivearrowitems: You do not have TNT/String/Flint and Steel in your inventory.          #!!!!!!CHANGE THAT IF YOU CHANGE THE REQUIRED ITEMS
     nopermissions: You do not have the permission to do that.
     firearrownotenabled: Fire-Arrows are disabled.
+    explosivearrownotenabled: Explosive-Arrows are disabled.
+    
