@@ -27,8 +27,11 @@ public class Commands implements CommandExecutor {
               String arg1 = args[0];
               if(arg1.equals("help")) {
             	  sender.sendMessage(ChatColor.GOLD + "===AdvancedBow Help=="); 
-            	  if(plugin.hasPerm(p, "advancedbow.fire")){
+            	  if(plugin.hasPerm(p, "advancedbow.arrows.fire")){
             		  sender.sendMessage(ChatColor.GOLD + "/advancedbow fire" + ChatColor.BLUE + " - Enables Fire-Arrows.");
+            	  }
+            	  if(plugin.hasPerm(p, "advancedbow.arrows.explosive")){
+            		  sender.sendMessage(ChatColor.GOLD + "/advancedbow explosive" + ChatColor.BLUE + " - Enables Explosive-Arrows.");
             	  }
             	  if(plugin.hasPerm(p, "advancedbow.admin")){
             		  sender.sendMessage(ChatColor.GOLD + "/advancedbow reload" + ChatColor.BLUE + " - Reloads the Config-File.");

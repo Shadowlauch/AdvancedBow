@@ -4,5 +4,5 @@ version: 0.1
 commands:
     advancedbow:
         description: AdvancedBow Command
-        usage: /<command> <version/reload/help/fire>
+        usage: /<command> <version/reload/help/fire/explosive>
         aliases: [ab,bow]
