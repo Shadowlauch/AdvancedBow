@@ -58,6 +58,9 @@ public class AdvancedBow extends JavaPlugin {
 		getCommand("advancedbow").setExecutor(new Commands(this));
 		log.info("[AdvancedBow] Version " + this.getDescription().getVersion()
 				+ " by Shadowlauch enabled.");
+		if(Update.getVersion()>Double.valueOf(this.getDescription().getVersion())){
+			log.info("[AdvancedBow] >>> A new version is aviable! <<<");
+		}
 		
 	}
 

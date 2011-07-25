@@ -3,8 +3,6 @@ package shadowlauch.advancedbow.main;
 import java.util.List;
 import java.util.ListIterator;
 
-import net.minecraft.server.ItemStack;
-
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -44,7 +42,7 @@ public class Commands implements CommandExecutor {
             		  plugin.config.configCheck();
             		  sender.sendMessage(ChatColor.GOLD + "Config-File reloaded."); 
             	  }
-            	  else sender.sendMessage(ChatColor.RED + plugin.config.temp_nep);
+            	  else Messages.send(p,ChatColor.RED + plugin.config.temp_nep);
             	  return true;
               }
               if(arg1.equals("version")) {
@@ -52,7 +50,7 @@ public class Commands implements CommandExecutor {
             	  sender.sendMessage(ChatColor.GOLD + "Version: " + plugin.getDescription().getVersion()
 				+ " by Shadowlauch"); 
             	  }
-            	  else sender.sendMessage(ChatColor.RED + plugin.config.temp_nep);
+            	  else Messages.send(p,ChatColor.RED + plugin.config.temp_nep);
             	  return true;
               }
               if(arg1.equals("fire")){
@@ -61,21 +59,21 @@ public class Commands implements CommandExecutor {
 	            		  if(hasItems(p,0)){
 	            			  if(!ArrowDamageListener.enabledfire.contains(p)){
 	            				  ArrowDamageListener.enabledfire.add(p);
-	            				  sender.sendMessage(ChatColor.RED + plugin.config.temp_fe);
+	            				  Messages.send(p,ChatColor.RED + plugin.config.temp_fe);
 	            				  if(ArrowDamageListener.enabledexplosive.contains(p)){
 	            					  ArrowDamageListener.enabledexplosive.remove(p);
 	            				  }
 	            			  }
 	            			  else{
 	            				  ArrowDamageListener.enabledfire.remove(p);
-	            				  sender.sendMessage(ChatColor.RED + plugin.config.temp_fd);
+	            				  Messages.send(p,ChatColor.RED + plugin.config.temp_fd);
 	            			  }
 	            		  }
-	            		  else sender.sendMessage(ChatColor.RED + plugin.config.temp_nlb);
+	            		  else Messages.send(p,ChatColor.RED + plugin.config.temp_nlb);
 	            	  }
-	            	  else sender.sendMessage(ChatColor.RED + plugin.config.temp_nep);
+	            	  else Messages.send(p,ChatColor.RED + plugin.config.temp_nep);
             	  }
-            	  else sender.sendMessage(ChatColor.RED + plugin.config.temp_fane);
+            	  else Messages.send(p,ChatColor.RED + plugin.config.temp_fane);
             	  return true;
               }
               if(arg1.equals("explosive")){
@@ -84,21 +82,21 @@ public class Commands implements CommandExecutor {
 	            		  if(hasItems(p,1)){
 	            			  if(!ArrowDamageListener.enabledexplosive.contains(p)){
 	            				  ArrowDamageListener.enabledexplosive.add(p);
-	            				  sender.sendMessage(ChatColor.RED + plugin.config.temp_ee);
+	            				  Messages.send(p,ChatColor.RED + plugin.config.temp_ee);
 	            				  if(ArrowDamageListener.enabledfire.contains(p)){
 	            					  ArrowDamageListener.enabledfire.remove(p);
 	            				  }
 	            			  }
 	            			  else{
 	            				  ArrowDamageListener.enabledexplosive.remove(p);
-	            				  sender.sendMessage(ChatColor.RED + plugin.config.temp_ed);
+	            				  Messages.send(p,ChatColor.RED + plugin.config.temp_ed);
 	            			  }
 	            		  }
-	            		  else sender.sendMessage(ChatColor.RED + plugin.config.temp_neri);
+	            		  else Messages.send(p,ChatColor.RED + plugin.config.temp_neri);
 	            	  }
-	            	  else sender.sendMessage(ChatColor.RED + plugin.config.temp_nep);
+	            	  else Messages.send(p,ChatColor.RED + plugin.config.temp_nep);
             	  }
-            	  else sender.sendMessage(ChatColor.RED + plugin.config.temp_fane);
+            	  else Messages.send(p,ChatColor.RED + plugin.config.temp_fane);
             	  return true;
               }
           }

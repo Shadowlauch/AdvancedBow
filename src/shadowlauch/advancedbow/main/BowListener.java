@@ -39,7 +39,7 @@ public class BowListener extends PlayerListener{
     			if(ArrowDamageListener.enabledfire.contains(e.getPlayer())) artype=0;
     			else if(ArrowDamageListener.enabledexplosive.contains(e.getPlayer())) artype=1;
     			else artype=2;
-    			e.getPlayer().sendMessage(ChatColor.RED + "" + plugin.config.temp_cd.replaceAll("\\+sec", getLeftTime(e,artype)));
+    			Messages.send(e.getPlayer(),ChatColor.RED + "" + plugin.config.temp_cd.replaceAll("\\+sec", getLeftTime(e,artype)));
     			e.setCancelled(true);
     			e.getPlayer().updateInventory();
     		}
@@ -58,16 +58,16 @@ public class BowListener extends PlayerListener{
 	    				}
 	    				else{
 	    					lastfirearrow.add(e.getPlayer());
-	    					e.getPlayer().sendMessage(ChatColor.RED + plugin.config.temp_nlb);
+	    					Messages.send(e.getPlayer(),ChatColor.RED + plugin.config.temp_nlb);
 	    					ArrowDamageListener.enabledfire.remove(e.getPlayer());
-	    					e.getPlayer().sendMessage(ChatColor.RED + plugin.config.temp_fgd);
+	    					Messages.send(e.getPlayer(),ChatColor.RED + plugin.config.temp_fgd);
 	    					e.setCancelled(true);
 	    				}
 	    			}
 	    			else if(ArrowDamageListener.enabledexplosive.contains(e.getPlayer())){
 	    				if(hasItems(e.getPlayer(),1)){
 		    				eadisabled.add(e.getPlayer());
-		    				eadisabled.add(System.currentTimeMillis()+plugin.config.eacdm);
+		    				Messages.send(e.getPlayer(),ChatColor.RED +""+ plugin.config.eacdm);
 		    				artype=1;
 		    				cooldown=plugin.config.eacdm;
 		    				settimer=true;
@@ -75,9 +75,9 @@ public class BowListener extends PlayerListener{
 	    				}
 	    				else{ 
 	    					lastexplosivearrow.add(e.getPlayer());
-	    					e.getPlayer().sendMessage(ChatColor.RED + plugin.config.temp_neri);
+	    					Messages.send(e.getPlayer(),ChatColor.RED + plugin.config.temp_neri);
 	    					ArrowDamageListener.enabledexplosive.remove(e.getPlayer());
-	    					e.getPlayer().sendMessage(ChatColor.RED + plugin.config.temp_egd);
+	    					Messages.send(e.getPlayer(),ChatColor.RED + plugin.config.temp_egd);
 	    					e.setCancelled(true);
 	    				}
 	    			}

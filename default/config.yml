@@ -24,6 +24,10 @@ explosivearrows:
 
 #You can edit templates freely.
 #But you have to include the variable (if extisting).
+#You can use the followiing colors, you have to put the colors in "<>" for example: <gray>
+#<black>, <darkblue>, <darkgreen>, <darkaqua>, <darkred>, <darkpurple>, <gold>, <gray>, <darkgray>, <blue>, <green>, <aqua>, <red>, <lightpurple>, <yellow>, <white>
+#U can use it like this: <white>Hi <purple>this is a <gray>test.
+#DO NOT USE NORMAL MINECRAFT COLOR CODES!
 templates:
   cooldown: +sec seconds cooldown.                              #&sec will be replaced by the "cooldown-seconds"
   fire:
