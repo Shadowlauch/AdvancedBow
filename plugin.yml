@@ -1,6 +1,6 @@
 name: AdvancedBow
 main: shadowlauch.advancedbow.main.AdvancedBow
-version: 0.2
+version: 0.21
 commands:
     advancedbow:
         description: AdvancedBow Command
