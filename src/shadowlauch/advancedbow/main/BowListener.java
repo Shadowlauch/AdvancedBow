@@ -125,7 +125,9 @@ public class BowListener extends PlayerListener{
       		int ite=it.next();
       		org.bukkit.inventory.ItemStack item=p.getInventory().getItem(p.getInventory().first(ite));
       		if(contains(duritems,ite)){
-      			if((plugin.config.fadiwd && i==0) || (plugin.config.eadiwd && i==1))item.setDurability((short) (item.getDurability()+1));
+      			if((plugin.config.fadiwd && i==0) || (plugin.config.eadiwd && i==1))
+      				if(item.getDurability()+1<item.getType().getMaxDurability()) item.setDurability((short) (item.getDurability()+1));
+      				else p.getInventory().removeItem(item);
       		}
       		else{
       			if((plugin.config.fasiwd && i==0) || (plugin.config.easiwd && i==1)){
