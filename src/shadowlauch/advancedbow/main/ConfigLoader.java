@@ -1,9 +1,12 @@
 package shadowlauch.advancedbow.main;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.RandomAccessFile;
 import java.util.List;
 //import java.util.List;
 
@@ -13,6 +16,7 @@ public class ConfigLoader{
 	    public ConfigLoader(AdvancedBow instance) {
 	    }
 	    File file=new File("plugins/AdvancedBow/config.yml");
+	    FileWriter writer;
 	    public void configCheck(){
 	        new File("plugins/AdvancedBow/").mkdir();
 	        if(!file.exists()){
@@ -28,12 +32,12 @@ public class ConfigLoader{
 	            loadkeys();
 	        }
 	    }
-/*	    private void write(String root, Object x){
+	    private void write(String root, Object x){
 	        Configuration config = load();
 	        config.setProperty(root, x);
 	        config.save();
 	    }
-	    private Boolean readBoolean(String root){
+	    /*	 private Boolean readBoolean(String root){
 	        Configuration config = load();
 	        return config.getBoolean(root, true);
 	    }*/
@@ -43,14 +47,14 @@ public class ConfigLoader{
 	    }
 	    private int readInt(String root){
 	        Configuration config = load();
-	        return config.getInt(root, 0);
+	        return config.getInt(root, -1);
 	    }
 	    private Double readDouble(String root){
 	        Configuration config = load();
 	        return config.getDouble(root, 0);
 	    }
 	    private String readString(String root){
-	        Configuration config = load();
+	    	Configuration config = load();
 	        return config.getString(root);
 	    }
 	    private boolean readBoolean(String root){
@@ -75,11 +79,13 @@ public class ConfigLoader{
 	        loadkeys();
 	    }
 	    private void loadkeys(){
+	    	Configuration config = load();
 	    	ad=readDouble("arrow-damage");
 	    	cdm=readInt("arrow-cooldown");
 	    	temp_cd=readString("templates.cooldown");
 	    	temp_nep=readString("templates.errors.nopermissions");
 	    	ft=readInt("fire-ticks");
+	    	perm=config.getString("permissions","permission");
 	    	
 	    	fae=readBoolean("firearrows.enabled");
 	    	facdm=readInt("firearrows.cooldown");
@@ -142,6 +148,7 @@ public class ConfigLoader{
 		protected int cdm;
 		protected double ad;
 		protected int ft;
+		protected String perm;
 		
 		protected boolean fae;
 		protected int facdm;
@@ -153,7 +160,7 @@ public class ConfigLoader{
 		protected String temp_nlb;
 		protected List<Integer> fari;
 		protected String temp_fane;
-	
+
 		protected boolean eae;
 		protected int eacdm;
 		protected int eaer;

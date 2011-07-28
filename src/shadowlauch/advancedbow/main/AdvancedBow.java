@@ -24,18 +24,37 @@ public class AdvancedBow extends JavaPlugin {
 			if (permtest != null) {
 				UsePermissions = true;
 				Permissions = ((Permissions) permtest).getHandler();
-				log.info("[AdvancedBow] Permissions Plugin detected!");
+				if(config.perm.equals("permission")){
+					log.info("[AdvancedBow] Permissions Plugin detected!");
+				}
+				
 			} else {
-				log.info("[AdvancedBow] Permissions Plugin not detected. Using Bukkit Default Permission Pulgin.");
+				if(config.perm.equals("permission")){
+					log.info("[AdvancedBow] Permissions Plugin not detected. Using Bukkit Default Permission Pulgin.");
+				}
 				UsePermissions = false;
 			}
 		}
 	}
 	public boolean hasPerm(Player p, String string) {
-		if (UsePermissions) {
-			return Permissions.has(p, string);
+		if (config.perm.equals("permission")) {
+			if(UsePermissions){
+				return Permissions.has(p, string);
+			}
+			else{
+				return p.isOp();
+			}
+			
 		}
-		return p.hasPermission(string);
+		else if(config.perm.equals("bukkit-permission")){
+			return p.hasPermission(string);
+		}
+		else if(config.perm.equals("op")){
+			return p.isOp();
+		}
+		else{
+			return true;
+		}
 	}
 
 	// CONFIG
@@ -53,8 +72,8 @@ public class AdvancedBow extends JavaPlugin {
 		pm.registerEvent(Event.Type.PLAYER_INTERACT, bl, Event.Priority.Normal, this);
 		pm.registerEvent(Event.Type.ENTITY_DAMAGE, adl, Event.Priority.Normal, this);
 		pm.registerEvent(Event.Type.PROJECTILE_HIT, adl, Event.Priority.Normal, this);
-		setupPermissions();
 		config.configCheck();
+		setupPermissions();
 		getCommand("advancedbow").setExecutor(new Commands(this));
 		log.info("[AdvancedBow] Version " + this.getDescription().getVersion()
 				+ " by Shadowlauch enabled.");

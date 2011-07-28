@@ -2,7 +2,7 @@
 ##
 ##
 
-
+permissions: permission                                         #permission=Old Permission Plugin (or GroupManager with Bridge); bukkit-permission=new Bukkit-Permssion System (not tested); op=OP; none=none
 arrow-damage: 1.0                                               #1=100%; 0.8=80%; 0=0%; ...
 arrow-cooldown: 1000                                            #Cooldown after normal shot in Milliseconds -> Second=1000 millisecons. E.G. 2 Seconds=2000 Milliseconds
 fire-ticks: 100                                                 #Leave as default (or try)
@@ -37,7 +37,7 @@ templates:
   explosive:
     enabled: You have enabled explosive-arrows.                 #Player enables explosive-arrows
     disabled: You have disabled explosive-arrows.               #Player enables explosive-arrows
-    got-disabled: Fire-arrows has been disabled.                #System disabled explosive-arrows
+    got-disabled: Explosive-arrows has been disabled.                #System disabled explosive-arrows
   errors:
     notrequiredfirearrowitems: You do not have Wool/Flint and Steel/Coal in your inventory.                #!!!!!!CHANGE THAT IF YOU CHANGE THE REQUIRED ITEMS
     notrequiredexplosivearrowitems: You do not have TNT/String/Flint and Steel in your inventory.          #!!!!!!CHANGE THAT IF YOU CHANGE THE REQUIRED ITEMS
